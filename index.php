@@ -1,5 +1,10 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8' />
     <link href='css/core/main.min.css' rel='stylesheet' />
@@ -19,9 +24,16 @@
 
 <body>
 
+<?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+    }
+    ?>
+
     <div id='calendar'></div>
 
-    //Modal de Exibição
+    <!--Modal de Exibição-->
     <div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -52,7 +64,7 @@
         </div>
     </div>
 
-    //Modal de Cadastro
+    <!--Modal de Cadastro-->
 
     <div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -63,8 +75,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
-                    <form>
+                    <span id="msg-cad"></span>
+                    <form id="addevent" method="POST">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Titulo</label>
                             <div class="col-sm-10">
@@ -72,7 +86,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Color</label>
+                            <label class="col-sm-2 col-form-label">Cor</label>
                             <div class="col-sm-10">
                                 <select name="color" class="form-control" id="color">
                                     <option value="">Selecione</option>
@@ -105,7 +119,9 @@
 
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <input type="button" name="CadEvent" id="CadEvent" value="Cadastrar" class="btn btn-success">
+                                <button type="submit" name="CadEvent" id="CadEvent" value="CadEvent" class="btn btn-success">
+                                    Cadastrar
+                                </button>
                             </div>
                         </div>
                     </form>
