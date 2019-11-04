@@ -24,7 +24,7 @@ session_start();
 
 <body>
 
-<?php
+    <?php
     if (isset($_SESSION['msg'])) {
         echo $_SESSION['msg'];
         unset($_SESSION['msg']);
@@ -44,19 +44,75 @@ session_start();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <dl class="row">
-                        <dt class="col-sm-3">ID da Reunião</dt>
-                        <dd class="col-sm-9" id="id"></dd>
+                    <div class="visEvent">
+                        <dl class="row">
+                            <dt class="col-sm-3">ID da Reunião</dt>
+                            <dd class="col-sm-9" id="id"></dd>
 
-                        <dt class="col-sm-3">Nome do Evento</dt>
-                        <dd class="col-sm-9" id="title"></dd>
+                            <dt class="col-sm-3">Nome do Evento</dt>
+                            <dd class="col-sm-9" id="title"></dd>
 
-                        <dt class="col-sm-3">Inicio</dt>
-                        <dd class="col-sm-9" id="start"></dd>
+                            <dt class="col-sm-3">Inicio</dt>
+                            <dd class="col-sm-9" id="start"></dd>
 
-                        <dt class="col-sm-3">Termino</dt>
-                        <dd class="col-sm-9" id="end"></dd>
-                    </dl>
+                            <dt class="col-sm-3">Termino</dt>
+                            <dd class="col-sm-9" id="end"></dd>
+                        </dl>
+                        <button class="btn btn-warning btn-canc-vis">Editar</button>
+                    </div>
+
+                    <!--Modal de Edição-->
+                    <div class="formEdit">
+                        <span id="msg-edit"></span>
+                        <form id="editEvent" method="POST">
+                            <input type="hidden" name="id" id="id">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Titulo</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="title" class="form-control" id="title" placeholder="Titulo da Reunião">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Cor</label>
+                                <div class="col-sm-10">
+                                    <select name="color" class="form-control" id="color">
+                                        <option value="">Selecione</option>
+                                        <option style="color:#FFD700;" value="#FFD700">Amarelo</option>
+                                        <option style="color:#0071c5;" value="#0071c5">Azul Turquesa</option>
+                                        <option style="color:#FF4500;" value="#FF4500">Laranja</option>
+                                        <option style="color:#8B4513;" value="#8B4513">Marrom</option>
+                                        <option style="color:#1C1C1C;" value="#1C1C1C">Preto</option>
+                                        <option style="color:#436EEE;" value="#436EEE">Royal Blue</option>
+                                        <option style="color:#A020F0;" value="#A020F0">Roxo</option>
+                                        <option style="color:#40E0D0;" value="#40E0D0">Turquesa</option>
+                                        <option style="color:#228B22;" value="#228B22">Verde</option>
+                                        <option style="color:#8B0000;" value="#8B0000">Vermelho</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Inicio da Reunião</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="start" class="form-control" id="start" onkeypress="DataHora(event, this)">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Final da Reunião</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="end" class="form-control" id="end" onkeypress="DataHora(event, this)">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button type="submit" name="CadEvent" id="CadEvent" value="CadEvent" class="btn btn-success">Cadastrar</button>
+                                    <button type="button" class="btn btn-danger btn-canc-edit">Cancelar</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
                 <div class="modal-footer">
                 </div>

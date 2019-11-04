@@ -16,9 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
             info.jsEvent.preventDefault();
 
             $('#visualizar #id').text(info.event.id);
+            $('#visualizar #id').val(info.event.id);
             $('#visualizar #title').text(info.event.title);
+            $('#visualizar #title').val(info.event.title);
             $('#visualizar #start').text(info.event.start.toLocaleString());
+            $('#visualizar #start').val(info.event.start.toLocaleString());
             $('#visualizar #end').text(info.event.end.toLocaleString());
+            $('#visualizar #end').val(info.event.end.toLocaleString());
+            $('#visualizar #color').val(info.event.backgroundColor.toLocaleString())
 
             $('#visualizar').modal('show');
         },
@@ -67,6 +72,7 @@ function DataHora(evento, objeto) {
 }
 
 $(document).ready(function () {
+    //Cadastrar Evento
     $("#addevent").on("submit", function (event) {
         event.preventDefault();
         $.ajax({
@@ -85,4 +91,36 @@ $(document).ready(function () {
             }
         })
     });
+
+    $('.btn-canc-vis').on("click", function() {
+        $('.visEvent').slideToggle();
+        $('.formEdit').slideToggle();
+        
+    });
+
+    $('.btn-canc-edit').on("click", function() {
+        $('.formEdit').slideToggle();
+        $('.visEvent').slideToggle();
+        
+    });
+//Editar Evento
+    $("#editEvent").on("submit", function (event) {
+        event.preventDefault();
+        $.ajax({
+            method: "POST",
+            url: "edit_event.php",
+            data: new FormData(this),
+            contentType: false,
+            processData: false,
+            success: function (retorna) {
+                if (retorna['sit']) {
+                    //$("#msg-cad").html(retorna['msg']);
+                    location.reload();
+                } else {
+                    $("#msg-edit").html(retorna['msg']);
+                }
+            }
+        })
+    });
+
 });
