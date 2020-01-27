@@ -59,6 +59,7 @@ session_start();
                             <dd class="col-sm-9" id="end"></dd>
                         </dl>
                         <button class="btn btn-warning btn-canc-vis">Editar</button>
+                        <a href="" id="excluir_evento" class="btn btn-danger">Excluir</a>
                     </div>
 
                     <!--Modal de Edição-->
@@ -106,7 +107,7 @@ session_start();
 
                             <div class="form-group row">
                                 <div class="col-sm-10">
-                                    <button type="submit" name="CadEvent" id="CadEvent" value="CadEvent" class="btn btn-success">Cadastrar</button>
+                                    <button type="submit" name="CadEvent" id="CadEvent" value="CadEvent" class="btn btn-success">Salvar</button>
                                     <button type="button" class="btn btn-danger btn-canc-edit">Cancelar</button>
                                 </div>
                             </div>

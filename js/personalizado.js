@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         },
         eventClick: function (info) {
-            info.jsEvent.preventDefault();
 
+            $("#excluir_evento").attr("href", "processa_excluir_evento.php?id=" + info.event.id);
+            info.jsEvent.preventDefault();
             $('#visualizar #id').text(info.event.id);
             $('#visualizar #id').val(info.event.id);
             $('#visualizar #title').text(info.event.title);
